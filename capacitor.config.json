@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "petsHome-mobileApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

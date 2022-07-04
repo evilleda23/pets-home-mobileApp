@@ -1,0 +1,7 @@
+{
+  "name": "petsHome-mobileApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
