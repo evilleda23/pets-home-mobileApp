@@ -37,10 +37,23 @@ export class AuthService {
       console.log(error.response.data);
     }
   }
-
   async login(email: string, password: string) {
+    let url = '/api/auth/users';
+    let res = await this.loginParticipante(email, password, url);
+
+    if (!res?.data.token) {
+      url = '/api/auth/orgs';
+      res = await this.loginParticipante(email, password, url);
+    }
+
+    if (!res?.data.token) {
+      return res;
+    }
+    return res;
+  }
+  async loginParticipante(email: string, password: string, endpoint: string) {
     //rembember: boolean) {
-    const url = urlAPI + '/api/auth';
+    const url = urlAPI + endpoint;
 
     try {
       const config = {
@@ -53,7 +66,6 @@ export class AuthService {
       console.log(body, url, config);
 
       const res = await axios.post(url, body, config);
-      console.log(res);
       return res;
     } catch (error) {
       console.log(error);

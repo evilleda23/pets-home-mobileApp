@@ -215,6 +215,12 @@ iframe {
   line-height: 1.5;
   color: #666666;
 }
+.txt3 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555555;
+}
 
 /*//////////////////////////////////////////////////////////////////
   [ login ]*/
@@ -286,13 +292,42 @@ iframe {
   display: block;
   padding-bottom: 54px;
 }
-
+.register100-form-title {
+  font-family: Poppins-Bold;
+  font-size: 24px;
+  color: #000;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 8px;
+  width: 100%;
+  display: block;
+}
+.register-subtitle {
+  font-family: Poppins-Bold;
+  color: #000;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 54px;
+  width: 100%;
+  display: block;
+}
 /*---------------------------------------------*/
 .wrap-input100 {
   position: relative;
   width: 100%;
   z-index: 1;
   margin-bottom: 10px;
+}
+.wrap-checkbox100 {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  z-index: 1;
+
+  margin: 20px 5;
+  align-items: flex-start;
 }
 
 .input100 {
@@ -308,6 +343,17 @@ iframe {
   padding: 0 30px 0 68px;
 }
 
+.checkbox100 {
+  font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #e6e6e6;
+  width: 10%;
+  background: #e6e6e6;
+  height: 25px;
+
+  padding: 0;
+}
 /*------------------------------------------------------------------
   [ Focus ]*/
 .focus-input100 {

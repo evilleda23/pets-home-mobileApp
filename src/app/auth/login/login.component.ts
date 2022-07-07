@@ -25,14 +25,28 @@ export class LoginComponent implements OnInit {
     this.bubbles = true;
 
     await this.auth.login(this.email, this.password).then((response) => {
-      console.log(response);
+      if (response?.status === 200) {
+        this.presentToast('Iniciando sesión', 'success', 750);
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 500);
+
+        this.bubbles = false;
+      } else {
+        this.presentToast('Usuario o contraseña incorrectos', 'danger');
+        this.bubbles = false;
+      }
     });
   }
-  async presentToast(toastMessage: string, toastColor: string) {
+  async presentToast(
+    toastMessage: string,
+    toastColor: string,
+    duration: number = 1000
+  ) {
     const toast = await this.toastController.create({
-      cssClass: 'center',
+      cssClass: 'text-color',
       message: toastMessage,
-      duration: 1000,
+      duration,
       color: toastColor,
     });
     toast.present();

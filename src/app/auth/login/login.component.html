@@ -2,7 +2,7 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div class="limiter">
-  <div class="container-login100  ">
+  <div class="container-login100  bg ">
     <div class="wrap-login100  ">
       <span class="login100-form-title">
         Iniciar Sesión
@@ -53,7 +53,7 @@
           <span class="txt1">
             ¿Aún no tienes cuenta?
           </span>
-          <a class="txt2" href="#">
+          <a class="txt2" href="/register">
             Crear cuenta
             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
           </a>
@@ -62,44 +62,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- 
-<section id="wrapper" class="login-register login-sidebar"
-  style="background-image:url(../../assets/images/background/login-register.jpg);">
-  <div class="login-box card ">
-    <div class="card-body ">
-      <form class="form" #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
-
-        <ion-item-divider>
-          <ion-label>Usuario</ion-label>
-          <ion-input slot="end" style="text-align: right;" type="text" placeholder="Usuario" name="nombre"
-            [(ngModel)]="email" required></ion-input>
-        </ion-item-divider>
-        <ion-item-divider>
-          <ion-label>Password</ion-label>
-          <ion-input slot="end" style="text-align: right;" type="Password" placeholder="Password" name="password"
-            [(ngModel)]="password" minlength="8" show-hide-input required></ion-input>
-        </ion-item-divider>
-        <ion-button class="card-margin" type="submit" expand="block" [disabled]="formulario.invalid">
-          continue
-        </ion-button>
-      </form>
-
-
-      <app-federate></app-federate>
-
-      <div class="form-group m-b-0">
-        <div class="col-sm-12 text-center">
-          <p>Don't have an account? <a href="/register" class="text-warning m-l-5"><b>Sign
-                Up</b></a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button (click)="lol()"> HOLA</button>
-</section>
-
-============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->

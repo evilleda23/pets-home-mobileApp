@@ -1,4 +1,96 @@
-<ion-content color="primary">
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div class="limiter">
+  <div class="container-login100  bg ">
+    <div class="wrap-login100  ">
+      <span class="register100-form-title">
+        Regístrate
+
+      </span>
+      <small class="register-subtitle">
+        Comienza a cambiar vidas con nosotros.
+      </small>
+
+      <div class="login100-pic ">
+        <img src="../../assets/images/logo-icon.png" alt="IMG">
+      </div>
+
+
+      <form class="login100-form" #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+
+
+        <div class="wrap-input100">
+          <input class="input100" type="text" name="name"
+            [placeholder]="!isUser ? 'Ingresa tu nombre ': 'Nombre de tu Organización'"
+            [(ngModel)]="!isUser ? user.name: org.name">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <ion-icon aria-hidden="true" [name]="isUser?'people-circle-outline':'person-circle-outline'"></ion-icon>
+          </span>
+        </div>
+        <div class="wrap-input100">
+          <input class="input100" type="text" name="email" placeholder="Correo electrónico"
+            [(ngModel)]="isUser ? user.email: org.email">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <ion-icon aria-hidden="true" name="mail-outline"></ion-icon>
+          </span>
+        </div>
+
+        <div class="wrap-input100">
+          <input class="input100" type="password" name="pass" placeholder="Password"
+            [(ngModel)]="isUser ? user.password: org.password" required>
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <ion-icon aria-hidden="true" name="lock-closed-outline"></ion-icon>
+          </span>
+        </div>
+
+        <div class="wrap-input100">
+          <input class="input100" type="password" name="pass2" placeholder="Confirm Password" [(ngModel)]="password2"
+            required>
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <ion-icon aria-hidden="true" name="lock-closed-outline"></ion-icon>
+          </span>
+        </div>
+        <div class="wrap-checkbox100">
+          <input class="checkbox100" type="checkbox" [textContent]="'Hola'" name="isUser" [checked]="isUser"
+            (change)="isUser=!isUser" required>
+          <label class="txt3">Registrarse como Organización</label>
+
+        </div>
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" type="submit" expand="block">
+            Continue
+          </button>
+
+        </div>
+        <app-federate></app-federate>
+
+        <div class="text-center p-t-12">
+          <span class="txt1">
+            Olvidé mis credencias
+          </span>
+          <a class="txt2" href="#">
+            ¿Username / Password?
+          </a>
+        </div>
+        <div class="text-center">
+          <span class="txt1">
+            ¿Aún no tienes cuenta?
+          </span>
+          <a class="txt2" href="/register">
+            Crear cuenta
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <ion-content color="primary">
   <form #form="ngForm" (ngSubmit)="register(form)">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
@@ -27,4 +119,4 @@
       </ion-row>
     </ion-grid>
   </form>
-</ion-content>
+</ion-content> -->

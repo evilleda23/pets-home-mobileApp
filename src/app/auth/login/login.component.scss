@@ -1,100 +1,25 @@
-body {
-  height: 100vh;
-  margin: 0;
-  background-color: #7b7887;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// Colors
+$bg-color: hsl(256,33,10);
+$dot-color: hsl(256,33,70);
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 22px;
+.bg {
+  background:
+  linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+  linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+  $dot-color;
+background-size: $dot-space $dot-space;
+  // background: linear-gradient(135deg, var(--secundario) 25%, transparent 25%) -50px
+  //     0,
+  //   linear-gradient(225deg, var(--secundario) 25%, transparent 25%) -50px 0,
+  //   linear-gradient(315deg, var(--secundario) 25%, transparent 25%),
+  //   linear-gradient(45deg, var(--secundario) 25%, transparent 25%);
+  // background-size: 2em 2em;
+  // background-color: var(--secundarioclaro);
 }
 
-.container {
-  width: 500px;
-  height: 500px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  position: relative;
-}
-
-.pattern-1 {
-  background-color: #fec7c2;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  justify-items: center;
-  align-items: center;
-  z-index: 3;
-  box-shadow: 4px 5px 5px 1px rgba(0, 0, 0, 0.24);
-}
-.pattern-2 {
-  background-color: #a1dddd;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(12, 1fr);
-  justify-items: center;
-  align-items: center;
-  z-index: 2;
-  box-shadow: 4px 5px 5px 1px rgba(0, 0, 0, 0.24);
-}
-.pattern-3 {
-  background-color: #dbd3ea;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  justify-items: center;
-  align-items: center;
-}
-
-.circle {
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-}
-
-.circle-2 {
-  width: 12px;
-  height: 12px;
-  background: white;
-  border-radius: 50%;
-}
-
-.circle-3 {
-  width: 42px;
-  height: 42px;
-  background: white;
-  border-radius: 50%;
-}
-
-.cartel {
-  width: 250px;
-  height: 100px;
-  position: absolute;
-  z-index: 7;
-  top: 40%;
-  left: 122px;
-  background: white;
-  color: #c39f65;
-  text-transform: uppercase;
-  font-size: 28px;
-  font-family: 'Roboto', sans-serif;
-
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.24);
-  p {
-    text-align: center;
-    padding-top: 0;
-  }
-  span {
-    font-weight: bold;
-  }
-  .border-cartel {
-    position: relative;
-    width: 230px;
-    height: 80px;
-    border: 2px solid #c39f65;
-    top: 8px;
-    left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+ion-toast .text-color{
+  --button-color: #fff;
 }
