@@ -30,6 +30,7 @@
     "@ionic/angular": "^6.1.9",
     "@nebular/eva-icons": "9.0.3",
     "@nebular/theme": "^9.0.3",
+    "axios": "^0.27.2",
     "eva-icons": "^1.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

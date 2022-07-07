@@ -1,74 +1,100 @@
-/*
-Template Name: Admin pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*Theme Colors*/
-/*bootstrap Color*/
-/*Light colors*/
-/*Normal Color*/
-/*Extra Variable*/
-/*******************
-Login register and recover password Page
-******************/
-.login-register {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100%;
-  width: 100%;
-  padding: 10% 0;
-  position: fixed;
-}
-
-.login-box {
-  width: 400px;
-  margin: 0 auto;
-}
-.login-box .footer {
-  width: 100%;
-  left: 0px;
-  right: 0px;
-}
-.login-box .social {
-  display: block;
-  margin-bottom: 30px;
-}
-
-#recoverform {
-  display: none;
-}
-
-.login-sidebar {
-  padding: 0px;
-  margin-top: 0px;
-}
-.login-sidebar .login-box {
-  right: 0px;
-  position: absolute;
-  height: 100%;
-}
-
-.two-column {
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: #7b7887;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
 
-.line {
-  width: 112px;
-  height: 47px;
-  border-bottom: 1px solid black;
-  position: absolute;
+.container {
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
 }
-.gray {
-  color: #646b6e;
-  border-width: 0.1rem;
+
+.pattern-1 {
+  background-color: #fec7c2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-items: center;
+  align-items: center;
+  z-index: 3;
+  box-shadow: 4px 5px 5px 1px rgba(0, 0, 0, 0.24);
+}
+.pattern-2 {
+  background-color: #a1dddd;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  justify-items: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 4px 5px 5px 1px rgba(0, 0, 0, 0.24);
+}
+.pattern-3 {
+  background-color: #dbd3ea;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+}
+
+.circle-2 {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+}
+
+.circle-3 {
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 50%;
+}
+
+.cartel {
+  width: 250px;
+  height: 100px;
+  position: absolute;
+  z-index: 7;
+  top: 40%;
+  left: 122px;
+  background: white;
+  color: #c39f65;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-family: 'Roboto', sans-serif;
+
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.24);
+  p {
+    text-align: center;
+    padding-top: 0;
+  }
+  span {
+    font-weight: bold;
+  }
+  .border-cartel {
+    position: relative;
+    width: 230px;
+    height: 80px;
+    border: 2px solid #c39f65;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
