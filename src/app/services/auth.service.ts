@@ -16,59 +16,56 @@ export class AuthService {
     const res = axios.get(urlAPI);
     return res;
   }
-  async register(credentials: any) {
+  async register(body: any, isUser: boolean) {
     //rembember: boolean) {
-    console.log(credentials);
-
-    const url = urlAPI + '/api/auth/';
+    console.log(body);
+    const endpoint = isUser ? '/api/users' : '/api/orgs';
+    const url = urlAPI + endpoint;
 
     try {
-      const config = {
-        headers: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          'Content-Type': 'application/json',
-        },
-      };
-      const body = JSON.stringify(credentials);
-      const res = await axios.post(url, body, config);
-      console.log(res);
+      const res = await this.postRequest(url, body);
       return res;
     } catch (error) {
       console.log(error.response.data);
     }
   }
-  async login(email: string, password: string) {
-    let url = '/api/auth/users';
-    let res = await this.loginParticipante(email, password, url);
+  async loginUser(email: string, password: string) {
+    const url = urlAPI + '/api/auth/users';
+    const body = { email, password };
+    try {
+      const res = await this.postRequest(url, body);
+      console.log(res);
 
-    if (!res?.data.token) {
-      url = '/api/auth/orgs';
-      res = await this.loginParticipante(email, password, url);
-    }
-
-    if (!res?.data.token) {
       return res;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
-    return res;
   }
-  async loginParticipante(email: string, password: string, endpoint: string) {
-    //rembember: boolean) {
-    const url = urlAPI + endpoint;
 
+  async loginOrg(email: string, password: string) {
+    const url = urlAPI + '/api/auth/orgs';
+    const body = { email, password };
+    try {
+      const res = await this.postRequest(url, body);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async postRequest(url, body) {
     try {
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
-
-      const body = { email, password };
-      console.log(body, url, config);
-
-      const res = await axios.post(url, body, config);
-      return res;
+      return await axios.post(url, body, config);
     } catch (error) {
       console.log(error);
+      return error;
     }
   }
 }

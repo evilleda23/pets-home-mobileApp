@@ -22,25 +22,32 @@
 
         <div class="wrap-input100">
           <input class="input100" type="text" name="name"
-            [placeholder]="!isUser ? 'Ingresa tu nombre ': 'Nombre de tu Organización'"
-            [(ngModel)]="!isUser ? user.name: org.name">
+            [placeholder]="isUser ? 'Ingresa tu nombre ': 'Nombre de tu Organización'" [(ngModel)]="participante.name">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
-            <ion-icon aria-hidden="true" [name]="isUser?'people-circle-outline':'person-circle-outline'"></ion-icon>
+            <ion-icon aria-hidden="true" [name]="isUser?'person-circle-outline':'people-circle-outline'"></ion-icon>
           </span>
         </div>
         <div class="wrap-input100">
           <input class="input100" type="text" name="email" placeholder="Correo electrónico"
-            [(ngModel)]="isUser ? user.email: org.email">
+            [(ngModel)]="participante.email">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
             <ion-icon aria-hidden="true" name="mail-outline"></ion-icon>
           </span>
         </div>
-
+        <div *ngIf="isUser" class="wrap-input100">
+          <input class="input100" type="date" name="birthdate" placeholder="BirthDate"
+            [(ngModel)]="participante.birthdate" [min]="'01/01/'+(legalAge-100)" [max]="'01/01/'+legalAge"
+            date-format="MM-dd-YYYY">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <ion-icon aria-hidden="true" name="balloon-outline"></ion-icon>
+          </span>
+        </div>
         <div class="wrap-input100">
           <input class="input100" type="password" name="pass" placeholder="Password"
-            [(ngModel)]="isUser ? user.password: org.password" required>
+            [(ngModel)]=" participante.password" required>
           <span class="focus-input100"></span>
           <span class="symbol-input100">
             <ion-icon aria-hidden="true" name="lock-closed-outline"></ion-icon>
@@ -48,16 +55,15 @@
         </div>
 
         <div class="wrap-input100">
-          <input class="input100" type="password" name="pass2" placeholder="Confirm Password" [(ngModel)]="password2"
-            required>
+          <input class="input100" type="password" name="pass2" placeholder="Confirm Password"
+            [(ngModel)]="participante.password2" required>
           <span class="focus-input100"></span>
           <span class="symbol-input100">
             <ion-icon aria-hidden="true" name="lock-closed-outline"></ion-icon>
           </span>
         </div>
         <div class="wrap-checkbox100">
-          <input class="checkbox100" type="checkbox" [textContent]="'Hola'" name="isUser" [checked]="isUser"
-            (change)="isUser=!isUser" required>
+          <input class="checkbox100" type="checkbox" name="isUser" (change)="isUser=!isUser" required>
           <label class="txt3">Registrarse como Organización</label>
 
         </div>

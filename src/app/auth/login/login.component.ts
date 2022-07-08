@@ -11,11 +11,11 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   email: '';
   password: '';
-
+  isUser = true;
   bubbles = false;
   constructor(
-    private toastController: ToastController,
     public alertController: AlertController,
+    private toastController: ToastController,
     private router: Router,
     private auth: AuthService
   ) {}
@@ -23,20 +23,20 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(formulario: NgForm) {
     this.bubbles = true;
-
-    await this.auth.login(this.email, this.password).then((response) => {
-      if (response?.status === 200) {
-        this.presentToast('Iniciando sesión', 'success', 750);
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-        }, 500);
-
-        this.bubbles = false;
-      } else {
-        this.presentToast('Usuario o contraseña incorrectos', 'danger');
-        this.bubbles = false;
-      }
-    });
+    let response;
+    if (this.isUser) {
+      response = await this.auth.loginUser(this.email, this.password);
+    } else {
+      response = this.auth.loginOrg(this.email, this.password);
+    }
+    if (response.status === 200) {
+      this.presentToast('Bienvenido', 'success', 750);
+      setTimeout(() => {
+        this.router.navigate(['/home']);
+      }, 500);
+    } else {
+      this.presentToast('Usuario o contraseña incorrectos', 'danger', 1500);
+    }
   }
   async presentToast(
     toastMessage: string,
@@ -50,10 +50,5 @@ export class LoginComponent implements OnInit {
       color: toastColor,
     });
     toast.present();
-  }
-
-  async lol() {
-    const res = await this.auth.lol();
-    console.log(res);
   }
 }

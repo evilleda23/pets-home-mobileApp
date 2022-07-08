@@ -6,3 +6,6 @@ ion-item {
 ion-button {
   --background: #062f77;
 }
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

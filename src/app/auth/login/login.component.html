@@ -18,7 +18,7 @@
 
 
         <div class="wrap-input100">
-          <input class="input100" type="text" name="email" placeholder="Correo electrónico" [(ngModel)]="email">
+          <input class="input100" type="text" name="email" placeholder="Email" [(ngModel)]="email">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
             <ion-icon aria-hidden="true" name="mail-outline"></ion-icon>
@@ -32,7 +32,11 @@
             <ion-icon aria-hidden="true" name="lock-closed-outline"></ion-icon>
           </span>
         </div>
+        <div class="wrap-checkbox100">
+          <input class="checkbox100" type="checkbox" name="isUser" (change)="isUser=!isUser" required>
+          <label class="txt3">Iniciar sesión como Organización</label>
 
+        </div>
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit" expand="block" [disabled]="formulario.invalid">
             Continue
@@ -46,7 +50,7 @@
             Olvidé mis credencias
           </span>
           <a class="txt2" href="#">
-            ¿Username / Password?
+            ¿Email / Password?
           </a>
         </div>
         <div class="text-center">
