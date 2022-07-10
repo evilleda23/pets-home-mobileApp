@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     public alertController: AlertController,
     private toastController: ToastController,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private storage: LocalStorageService
   ) {}
   ngOnInit() {}
 
@@ -27,13 +29,22 @@ export class LoginComponent implements OnInit {
     if (this.isUser) {
       response = await this.auth.loginUser(this.email, this.password);
     } else {
-      response = this.auth.loginOrg(this.email, this.password);
+      response = await this.auth.loginOrg(this.email, this.password);
     }
+    console.log(response);
+
     if (response.status === 200) {
       this.presentToast('Bienvenido', 'success', 750);
       setTimeout(() => {
         this.router.navigate(['/home']);
       }, 500);
+
+      const res = await this.auth.getCurrentParticipant(this.isUser);
+      const participant = {
+        ...res.data,
+        isUser: this.isUser,
+      };
+      this.storage.saveParticipant(participant);
     } else {
       this.presentToast('Usuario o contraseña incorrectos', 'danger', 1500);
     }

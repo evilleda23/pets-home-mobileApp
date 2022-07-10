@@ -34,8 +34,7 @@ export class AuthService {
     const body = { email, password };
     try {
       const res = await this.postRequest(url, body);
-      console.log(res);
-
+      this.token = res.data.token;
       return res;
     } catch (error) {
       console.log(error);
@@ -48,13 +47,40 @@ export class AuthService {
     const body = { email, password };
     try {
       const res = await this.postRequest(url, body);
+      this.token = res.data.token;
       return res;
     } catch (error) {
       console.log(error);
       return error;
     }
   }
+  async getCurrentParticipant(isUser: boolean) {
+    const endpoint = isUser ? '/api/auth/users' : '/api/auth/orgs';
+    const url = urlAPI + endpoint;
+    try {
+      const res = await this.getRequest(url);
+      console.log(res);
 
+      return res;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+
+  async getRequest(url) {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': this.token,
+        },
+      };
+      return await axios.get(url, config);
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
   async postRequest(url, body) {
     try {
       const config = {

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User, Org } from '../../interfaces/interfaces';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   isUser = true;
-
+  user = {};
+  org = {};
   participante = {
     email: '',
     password: '',
@@ -26,7 +28,8 @@ export class RegisterComponent implements OnInit {
     public alertController: AlertController,
     private auth: AuthService,
     private toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private storage: LocalStorageService
   ) {}
   ngOnInit() {}
   async onSubmit(formulario: NgForm) {
@@ -38,20 +41,20 @@ export class RegisterComponent implements OnInit {
     ) {
       let response;
       if (this.isUser) {
-        const user = {
+        this.user = {
           name: this.participante.name,
           email: this.participante.email,
           birthdate: this.participante.birthdate,
           password: this.participante.password,
         };
-        response = await this.auth.register(user, this.isUser);
+        response = await this.auth.register(this.user, this.isUser);
       } else {
-        const org = {
+        this.org = {
           name: this.participante.name,
           email: this.participante.email,
           password: this.participante.password,
         };
-        response = await this.auth.register(org, this.isUser);
+        response = await this.auth.register(this.org, this.isUser);
       }
       console.log(response);
 
@@ -60,6 +63,21 @@ export class RegisterComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 500);
+        if (this.isUser) {
+          this.user = {
+            ...this.user,
+            isUser: this.isUser,
+          };
+          this.storage.saveParticipant(this.user);
+        } else {
+          this.org = {
+            ...this.org,
+            isUser: this.isUser,
+          };
+          console.log(this.org);
+
+          this.storage.saveParticipant(this.org);
+        }
       } else {
         this.presentToast(
           'Ya existe una cuenta con ese email registrado',

@@ -1,11 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Header</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  
-  <app-publicacion></app-publicacion>
-  <app-seguimiento></app-seguimiento>
+
+  <ion-menu side="end" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <div>
+
+          <ion-icon size="large" name="menu-outline"> </ion-icon>
+          <ion-menu-toggle>
+            <h1>
+              Menu
+            </h1>
+
+          </ion-menu-toggle>
+        </div>
+
+      </ion-toolbar>
+
+    </ion-header>
+    <ion-content>
+
+      <ion-list>
+        <ion-item>Menu Item</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- <div class="ion-page" id="main">
+    <ion-content class="ion-padding">
+      <ion-menu-toggle autoHide menu="end">
+        <ion-button>
+          <ion-icon name="menu-outline"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-content>
+    <app-publicacion *ngIf="isUser"></app-publicacion>
+    <app-seguimiento *ngIf="!isUser"></app-seguimiento>
+  </div> -->
+
+
+
 </ion-content>

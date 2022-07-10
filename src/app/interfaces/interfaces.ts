@@ -16,3 +16,9 @@ export interface Org {
   password?: string;
   remember_token?: string;
 }
+
+export interface Componente {
+  icon: string;
+  name: string;
+  redirectTo: string;
+}
