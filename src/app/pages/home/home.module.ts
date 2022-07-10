@@ -18,10 +18,11 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    PublicacionPageModule,
     SeguimientoPageModule,
     ComponentsModule,
+    PublicacionPageModule,
   ],
   declarations: [HomePage],
+  exports:  [HomePage],
 })
 export class HomePageModule {}

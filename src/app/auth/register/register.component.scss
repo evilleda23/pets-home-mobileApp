@@ -9,3 +9,29 @@ ion-button {
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+ion-checkbox {
+  --border-radius: 50% !important;
+  --checkmark-color: white;
+}
+
+.txt3 {
+  margin-left: 5px;
+  padding-bottom: 5px;
+}
+
+// Colors
+$bg-color: hsl(256,33,10);
+$dot-color: hsl(256,33,70);
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 22px;
+.bg {
+  background:
+  linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+  linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+  $dot-color;
+background-size: $dot-space $dot-space;
+  
+}

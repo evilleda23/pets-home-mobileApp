@@ -4,9 +4,16 @@ import { IonicModule } from '@ionic/angular';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 
+import { PublicacionPageModule } from './publicacion/publicacion.module';
+
 @NgModule({
   declarations: [PagesComponent],
   exports: [PagesComponent],
-  imports: [CommonModule, IonicModule, PagesRoutingModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    PagesRoutingModule,
+    PublicacionPageModule,
+  ],
 })
 export class PagesModule {}
