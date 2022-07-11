@@ -1,11 +1,11 @@
 <ion-app>
   <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar color="secondary">
         <ion-buttons slot="start">
           <ion-menu-button menu="first"></ion-menu-button>
         </ion-buttons>
-        <ion-title class="p-l-4 txt">Menú</ion-title>
+        <ion-title class="p-l-4 txt">Menu</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -15,7 +15,7 @@
       <ion-list>
         <ion-menu-toggle *ngFor="let c of componentes | async">
           <ion-item class="txt" [routerLink]="c.redirectTo" detail>
-            <ion-icon slot="start" color="primary" [name]="c.icon" class="m-r-5"></ion-icon>
+            <ion-icon slot="start" color="secondary" [name]="c.icon" class="m-r-5"></ion-icon>
             {{c.title}}
           </ion-item>
 
