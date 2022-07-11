@@ -1,0 +1,32 @@
+.ion-item {
+    --background: rgb(246, 182, 255);
+  }
+
+.ion-card {
+    --background: rgb(255, 255, 255);
+}
+
+.item-inner {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline-start: var(--inner-padding-start);
+    padding-inline-end: calc(var(--ion-safe-area-right, 0px) + var(--inner-padding-end));
+    margin: 0px;
+    padding-left: var(--inner-padding-start);
+    padding-right: calc(var(--ion-safe-area-right, 0px) + var(--inner-padding-end));
+    padding-top: var(--inner-padding-top);
+    padding-bottom: var(--inner-padding-bottom);
+    display: flex;
+    position: relative;
+    flex: 1 1 0%;
+    flex-direction: inherit;
+    align-items: inherit;
+    align-self: stretch;
+    min-height: inherit;
+    border-width: var(--inner-border-width);
+    /* border-style: var(--border-style); */
+    border-color: var(--border-color);
+    box-shadow: var(--inner-box-shadow);
+    overflow: inherit;
+    box-sizing: border-box;
+}
