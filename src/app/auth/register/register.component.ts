@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { User, Org } from '../../interfaces/interfaces';
-import { AlertController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  MenuController,
+  ToastController,
+} from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 
@@ -29,8 +33,11 @@ export class RegisterComponent implements OnInit {
     private auth: AuthService,
     private toastController: ToastController,
     private router: Router,
-    private storage: LocalStorageService
-  ) {}
+    private storage: LocalStorageService,
+    private menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false);
+  }
   ngOnInit() {}
   async onSubmit(formulario: NgForm) {
     this.bubbles = true;

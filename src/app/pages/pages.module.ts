@@ -9,11 +9,6 @@ import { PublicacionPageModule } from './publicacion/publicacion.module';
 @NgModule({
   declarations: [PagesComponent],
   exports: [PagesComponent],
-  imports: [
-    CommonModule,
-    IonicModule,
-    PagesRoutingModule,
-    PublicacionPageModule,
-  ],
+  imports: [CommonModule, IonicModule, PagesRoutingModule],
 })
 export class PagesModule {}

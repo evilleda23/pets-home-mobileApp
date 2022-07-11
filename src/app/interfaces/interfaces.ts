@@ -19,6 +19,6 @@ export interface Org {
 
 export interface Componente {
   icon: string;
-  name: string;
+  title: string;
   redirectTo: string;
 }
