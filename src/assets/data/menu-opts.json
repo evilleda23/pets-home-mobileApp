@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "home-outline",
+    "title": "Home",
+    "redirectTo": "/home"
+  },
+  {
+    "icon": "man-outline",
+    "title": "Profile",
+    "redirectTo": "/profile"
+  },
+  {
+    "icon": "chatbubbles-outline",
+    "title": "Chats",
+    "redirectTo": "/chat"
+  },
+  {
+    "icon": "accessibility-outline",
+    "title": "About Us",
+    "redirectTo": "/about"
+  }
+]

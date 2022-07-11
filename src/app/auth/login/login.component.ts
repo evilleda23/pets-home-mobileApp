@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  ToastController,
+  MenuController,
+} from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 @Component({
@@ -19,8 +23,12 @@ export class LoginComponent implements OnInit {
     private toastController: ToastController,
     private router: Router,
     private auth: AuthService,
-    private storage: LocalStorageService
-  ) {}
+    private storage: LocalStorageService,
+    private menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false);
+  }
+
   ngOnInit() {}
 
   async onSubmit(formulario: NgForm) {

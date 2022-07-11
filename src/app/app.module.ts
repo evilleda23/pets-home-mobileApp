@@ -11,6 +11,7 @@ import { ComponentsModule } from './components/components.module';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { PublicacionPageModule } from './pages/publicacion/publicacion.module';
 import { PagesModule } from './pages/pages.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,6 +22,7 @@ import { PagesModule } from './pages/pages.module';
     AuthModule,
     ComponentsModule,
     PagesModule,
+    HttpClientModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
