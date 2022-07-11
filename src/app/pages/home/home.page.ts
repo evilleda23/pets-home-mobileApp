@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,21 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   isUser: false;
-  constructor(private menuCtrl: MenuController) {}
-
-  ngOnInit() {}
+  participant: any;
+  isLoading = true;
+  constructor(
+    private menuCtrl: MenuController,
+    private storage: LocalStorageService
+  ) {}
+  ngOnInit() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.storage.getCurrentParticipant().then((participant) => {
+        this.participant = participant;
+        this.isLoading = false;
+      });
+    }, 1500);
+  }
   mostrarMenu() {
     this.menuCtrl.toggle();
   }

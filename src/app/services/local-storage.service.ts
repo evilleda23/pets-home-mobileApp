@@ -13,7 +13,7 @@ export class LocalStorageService {
   }
 
   async getCurrentParticipant() {
-    const user = await this.storage.get('currentUser');
+    const user = await this.storage.get('Participant');
     return user;
   }
   saveParticipant(user: any) {

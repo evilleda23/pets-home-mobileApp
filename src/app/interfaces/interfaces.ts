@@ -5,7 +5,6 @@ export interface User {
   birthdate: string;
   dpi?: string;
   password?: string;
-  remember_token?: string;
 }
 export interface Org {
   name: string;

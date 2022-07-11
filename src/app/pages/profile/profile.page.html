@@ -1,5 +1,100 @@
-<app-header title="Perfil"></app-header>
-
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-capitalize">
+            <ion-text color="light">
+                <h1 class="title">Perfil</h1>
+            </ion-text>
+        </ion-title>
+        <ion-buttons *ngIf="!user.isUser" slot="end">
+            <ion-button (click)="addCuenta()">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" color="primary">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Actualizar"
+            refreshingSpinner="circles" refreshingText="Actualizando...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-grid class="div-center" fixed *ngIf="!editPassword">
+        <ion-row class="ion-padding" *ngIf="!cambiarFoto">
+            <ion-col size="4">
+                <ion-card class="poster">
+                    <img class="image-poster" src="../../../assets/images/profile-photo/empty.png">
+                </ion-card>
+            </ion-col>
 
+        </ion-row>
+        <ion-row class="ion-padding p-t-0">
+            <ion-col size="12">
+                <span class="user-name">
+                    {{user.name}}
+                </span>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12"></ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
+<!-- 
+
+    <ion-grid class="div-center" fixed *ngIf="!editPassword">
+        <ion-row *ngIf="!cambiarFoto">
+            <ion-col size="4">
+                <ion-card class="poster">
+                    <img class="image_poster" src="../../../assets/images/profile-photo/empty.png">
+                </ion-card>
+                <ion-button class="button" (click)="cambiarFoto = true; alert = false" expand="block" fill="clear"
+                    shape="round">
+                    Cambiar foto
+                </ion-button>
+            </ion-col>
+            <ion-col size="8">
+                <form #formulario="ngForm" class="m-l-10">
+                    <ion-item-group>
+                        <app-alert *ngIf="alert" [message]="message" [error]="error"></app-alert>
+                        <ion-item>
+                            <ion-label position="floating">Correo</ion-label>
+                            <ion-input disabled="true" [(ngModel)]="user.email" pattern="^([a-zA-Z0-9_\-\.]+)$"
+                                name="correo" type="text" required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Nombre</ion-label>
+                            <ion-input [(ngModel)]="user.name" pattern="^([a-zA-Z0-9_\-\.\s]+)$" name="name" type="text"
+                                required></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="user.isUser">
+                            <ion-label position="floating">DPI</ion-label>
+                            <ion-input [(ngModel)]="user.dpi" maxlength='15' pattern="^([0-9\s]+)$" name="DPI"
+                                type="text" required></ion-input>
+                        </ion-item>
+
+                        <ion-item *ngIf="user.isUser">
+                            <ion-label position="floating">Fecha de Nacimiento</ion-label>
+                            <ion-input type="text" name="nacimiento" disabled="true" [value]="user.birthdate">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!user.isUser">
+                            <ion-label position="floating">Estado</ion-label>
+                            <ion-input type="text" name="nacimiento" disabled="true"
+                                [value]="user.verification?'Cuenta Verificada':'Cuenta No Verificada'">
+                            </ion-input>
+                        </ion-item>
+                    </ion-item-group>
+
+                    <ion-button class="ion-margin" expand="block" color="primary" type="submit"
+                        [disabled]="formulario.invalid">
+                        Actualizar Datos
+                    </ion-button>
+
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content> -->

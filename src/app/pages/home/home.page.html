@@ -8,6 +8,9 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-
-    <app-publicacion></app-publicacion>
+    <div class="center" *ngIf="isLoading">
+        <ion-spinner color="secondary" name="bubbles"></ion-spinner>
+    </div>
+    <app-publicacion *ngIf=" !isLoading && participant.isUser "></app-publicacion>
+    <app-seguimiento *ngIf="!isLoading&& !participant.isUser"></app-seguimiento>
 </ion-content>
