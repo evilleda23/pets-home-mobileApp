@@ -1,5 +1,32 @@
+.back {
+  --background: rgb(255, 255, 255);
+}
+.ion-card{
+  width: 365px;
+  margin: 5px;
+}
+
+ion-label{
+  color: rgb(169, 169, 169);
+  border-left: 1px;
+}
+.contentP{
+  color: rgb(0, 0, 0);
+}
+
+ion-toolbar{
+  color: rgb(255, 255, 255);
+  border-left: 1px;
+}
+
 .container {
   width: 100%;
+}
+.avatar {
+  --border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  margin: auto;
 }
 .poster {
   width: 100%;
@@ -72,8 +99,7 @@ ion-label {
 .user-name {
   font-family: Poppins-Bold;
   font-size: 32px;
-  color: #fff;
-
+  color: rgb(27, 26, 26);
+  margin: 25%;
   width: 100%;
-  display: block;
 }

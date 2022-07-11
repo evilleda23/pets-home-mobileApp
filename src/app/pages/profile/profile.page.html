@@ -15,20 +15,17 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="back">
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" color="primary">
         <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Actualizar"
             refreshingSpinner="circles" refreshingText="Actualizando...">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-grid class="div-center" fixed *ngIf="!editPassword">
+    <ion-grid class="div-center back" fixed *ngIf="!editPassword">
         <ion-row class="ion-padding" *ngIf="!cambiarFoto">
-            <ion-col size="4">
-                <ion-card class="poster">
-                    <img class="image-poster" src="../../../assets/images/profile-photo/empty.png">
-                </ion-card>
-            </ion-col>
-
+            <ion-avatar class="avatar">
+                <img src="../../../assets/images/profile-photo/empty.png" alt="IMG">
+              </ion-avatar>
         </ion-row>
         <ion-row class="ion-padding p-t-0">
             <ion-col size="12">
@@ -41,6 +38,44 @@
             <ion-col size="12"></ion-col>
         </ion-row>
     </ion-grid>
+    <ion-toolbar color="light">
+        <ion-segment>
+          <ion-segment-button value="publicacion">
+            <ion-icon name="image-outline"></ion-icon>
+            <ion-label>Publicaciones</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="adopcion">
+            <ion-icon name="heart-outline"></ion-icon>
+            <ion-label>Adopciones</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="donacion">
+            <ion-icon name="cash-outline"></ion-icon>
+            <ion-label>Donaciones</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="config">
+            <ion-icon name="construct-outline"></ion-icon>
+            <ion-label>Configuración</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+      <ion-card class="ion-card">
+        <ion-item color="secondary">
+          <ion-avatar slot="start">
+            <img src="../../../assets/images/profile-photo/empty.png" alt="IMG">
+          </ion-avatar>
+          <ion-label class="ion-margin">
+            <h3>{{user.name}}</h3>
+            <p>Jun 11, 2022</p>
+          </ion-label>
+        </ion-item>
+        <img src="../../assets/images/publicacion3.jpeg" alt="IMG">
+        <ion-card-header class="ion-margin">
+          <ion-card-title>¡Aniversario!</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Estamos tan felices de haber cumplido un año con Tommy en nuestras vidas.
+        </ion-card-content>
+      </ion-card>
 </ion-content>
 <!-- 
 
