@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
         this.participant = participant;
         this.isLoading = false;
       });
-    }, 1500);
+    }, 1000);
   }
   mostrarMenu() {
     this.menuCtrl.toggle();
