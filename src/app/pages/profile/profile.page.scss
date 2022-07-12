@@ -1,20 +1,20 @@
 .back {
   --background: rgb(255, 255, 255);
 }
-.ion-card{
+.ion-card {
   width: 365px;
   margin: 5px;
 }
 
-ion-label{
+ion-label {
   color: rgb(169, 169, 169);
   border-left: 1px;
 }
-.contentP{
+.contentP {
   color: rgb(0, 0, 0);
 }
 
-ion-toolbar{
+ion-toolbar {
   color: rgb(255, 255, 255);
   border-left: 1px;
 }
@@ -93,13 +93,23 @@ ion-label {
   color: #fff;
   text-align: center;
   width: 100%;
-  display: block;
 }
 
 .user-name {
   font-family: Poppins-Bold;
   font-size: 32px;
   color: rgb(27, 26, 26);
-  margin: 25%;
+
   width: 100%;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

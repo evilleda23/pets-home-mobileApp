@@ -10,6 +10,8 @@ import { HomePage } from '../home/home.page';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/interfaces/interfaces';
 import { Org } from '../../interfaces/interfaces';
+import { HeaderComponent } from '../../components/header/header.component';
+import { DonacionPage } from '../donacion/donacion.page';
 
 @Component({
   selector: 'app-profile',
@@ -40,7 +42,8 @@ export class ProfilePage implements OnInit {
   imgPath: any;
   constructor(
     public alertController: AlertController,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -60,7 +63,16 @@ export class ProfilePage implements OnInit {
       event.target.complete();
     }, 1500);
   }
-  addCuenta() {
-    this.alert = true;
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: DonacionPage,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
+    }
   }
 }

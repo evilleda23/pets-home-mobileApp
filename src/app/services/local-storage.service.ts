@@ -16,7 +16,13 @@ export class LocalStorageService {
     const user = await this.storage.get('Participant');
     return user;
   }
-  saveParticipant(user: any) {
-    this.storage.set('Participant', user);
+  async saveParticipant(user: any) {
+    await this.storage.set('Participant', user);
+  }
+  async saveToken(token: string) {
+    await this.storage.set('Token', token);
+  }
+  async getToken() {
+    return this.storage.get('Token');
   }
 }

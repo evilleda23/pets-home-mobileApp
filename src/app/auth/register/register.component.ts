@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,6 +10,7 @@ import {
 } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { CuentasService } from '../../services/cuentas.service';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +19,8 @@ import { LocalStorageService } from '../../services/local-storage.service';
 })
 export class RegisterComponent implements OnInit {
   isUser = true;
-  user = {};
-  org = {};
+  user: any;
+  org: any;
   participante = {
     email: '',
     password: '',
@@ -34,7 +36,8 @@ export class RegisterComponent implements OnInit {
     private toastController: ToastController,
     private router: Router,
     private storage: LocalStorageService,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private cuentasService: CuentasService
   ) {
     this.menuCtrl.enable(false);
   }
@@ -42,49 +45,36 @@ export class RegisterComponent implements OnInit {
   async onSubmit(formulario: NgForm) {
     this.bubbles = true;
 
-    if (
-      this.participante.password === this.participante.password2 ||
-      this.participante.password === this.participante.password2
-    ) {
+    if (this.participante.password === this.participante.password2) {
       let response;
+
+      this.getParticipante();
       if (this.isUser) {
-        this.user = {
-          name: this.participante.name,
-          email: this.participante.email,
-          birthdate: this.participante.birthdate,
-          password: this.participante.password,
-        };
         response = await this.auth.register(this.user, this.isUser);
       } else {
-        this.org = {
-          name: this.participante.name,
-          email: this.participante.email,
-          password: this.participante.password,
-        };
         response = await this.auth.register(this.org, this.isUser);
       }
-      console.log(response);
 
       if (response?.status === 200) {
         this.presentToast('Cuenta registrada correctamente', 'success', 750);
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 500);
+
         if (this.isUser) {
           this.user = {
             ...this.user,
             isUser: this.isUser,
           };
-          this.storage.saveParticipant(this.user);
+          await this.storage.saveParticipant(this.user);
         } else {
           this.org = {
             ...this.org,
             isUser: this.isUser,
           };
-          console.log(this.org);
-
-          this.storage.saveParticipant(this.org);
+          await this.storage.saveParticipant(this.org);
         }
+        await this.registerUser();
       } else {
         this.presentToast(
           'Ya existe una cuenta con ese email registrado',
@@ -92,6 +82,33 @@ export class RegisterComponent implements OnInit {
           1750
         );
       }
+    }
+  }
+
+  async registerUser() {
+    const res = await this.auth.getCurrentParticipant(this.isUser);
+    console.log(res);
+
+    if (this.user) {
+      await this.cuentasService.registerUser(res.data._id);
+    } else {
+      await this.cuentasService.registerOrg(res.data._id);
+    }
+  }
+  getParticipante() {
+    if (this.isUser) {
+      this.user = {
+        name: this.participante.name,
+        email: this.participante.email,
+        birthdate: this.participante.birthdate,
+        password: this.participante.password,
+      };
+    } else {
+      this.org = {
+        name: this.participante.name,
+        email: this.participante.email,
+        password: this.participante.password,
+      };
     }
   }
   async presentToast(

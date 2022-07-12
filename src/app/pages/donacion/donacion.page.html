@@ -1,36 +1,53 @@
-<app-header title="Nueva Cuenta"></app-header>
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">
+      <ion-text color="light">
+        <h1 class="title">Agregar Cuenta</h1>
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <div class="limiter">
   <div class="container-login100  bg ">
     <div class="wrap-seguimiento100  ">
-      <ion-icon class="avatar" name="paw-outline"></ion-icon>
-      <ion-item color="dark" class="ion-margin">
-        <ion-label position="floating">No. de cuenta</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
 
-      <ion-list class="ion-margin">
-        <ion-item color="dark">
-          <ion-select  color="dark" placeholder="Selecciona un banco">
-            <ion-select-option color="dark" value="apples">BAC</ion-select-option>
-            <ion-select-option color="dark" value="oranges">Banco Industrial</ion-select-option>
-            <ion-select-option color="dark" value="bananas">Banco Promerica</ion-select-option>
-            <ion-select-option color="dark" value="bananas">Banrural</ion-select-option>
-            <ion-select-option color="dark" value="bananas">Bantrab</ion-select-option>
-            <ion-select-option color="dark" value="bananas">Banco Ficohsa</ion-select-option>
-            <ion-select-option color="dark" value="bananas">CHN</ion-select-option>
-          </ion-select>
+      <form class="login100-form" #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+
+        <ion-icon class="avatar" name="paw-outline"></ion-icon>
+        <ion-item color="dark" class="ion-margin">
+          <ion-label position="floating">No. de cuenta</ion-label>
+          <ion-input name="noCuenta" [(ngModel)]="cuenta.noCuenta"></ion-input>
         </ion-item>
-      </ion-list>
-      <ion-list class="ion-margin">
-        <ion-item color="dark">
-          <ion-select  color="dark" placeholder="Selecciona un tipo de cuenta">
-            <ion-select-option color="dark" value="apples">Monetaria</ion-select-option>
-            <ion-select-option color="dark" value="oranges">Ahorro</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+
+        <ion-list class="ion-margin">
+          <ion-item color="dark">
+            <ion-select color="dark" placeholder="Selecciona un banco" (ionChange)="getBankItem($event)">
+              <ion-select-option color="dark" value="BAC">BAC</ion-select-option>
+              <ion-select-option color="dark" value="Banco Industrial">Banco Industrial</ion-select-option>
+              <ion-select-option color="dark" value="Banco Promerica">Banco Promerica</ion-select-option>
+              <ion-select-option color="dark" value="Banrural">Banrural</ion-select-option>
+              <ion-select-option color="dark" value="Bantrab">Bantrab</ion-select-option>
+              <ion-select-option color="dark" value="Banco Ficohsa">Banco Ficohsa</ion-select-option>
+              <ion-select-option color="dark" value="CHN">CHN</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="ion-margin">
+          <ion-item color="dark">
+            <ion-select color="dark" placeholder="Selecciona un tipo de cuenta" (ionChange)="getTypeItem($event)">
+              <ion-select-option color="dark" value="Monetaria">Monetaria</ion-select-option>
+              <ion-select-option color="dark" value="Ahorro">Ahorro</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-button class="ion-margin" [disabled]="formulario.invalid " type="submit" expand="block">
+          continue
+        </ion-button>
+      </form>
 
     </div>
   </div>
 </div>
-

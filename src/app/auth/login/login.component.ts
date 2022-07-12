@@ -8,6 +8,7 @@ import {
 } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { CuentasService } from '../../services/cuentas.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -34,12 +35,12 @@ export class LoginComponent implements OnInit {
   async onSubmit(formulario: NgForm) {
     this.bubbles = true;
     let response;
+
     if (this.isUser) {
       response = await this.auth.loginUser(this.email, this.password);
     } else {
       response = await this.auth.loginOrg(this.email, this.password);
     }
-    console.log(response);
 
     if (response.status === 200) {
       this.presentToast('Bienvenido', 'success', 750);
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
         ...res.data,
         isUser: this.isUser,
       };
-      this.storage.saveParticipant(participant);
+      await this.storage.saveParticipant(participant);
     } else {
       this.presentToast('Usuario o contraseña incorrectos', 'danger', 1500);
     }
