@@ -39,7 +39,11 @@ const routes: Routes = [
       import('./seguimiento/seguimiento.module').then(
         (m) => m.SeguimientoPageModule
       ),
+  },  {
+    path: 'donacion',
+    loadChildren: () => import('./donacion/donacion.module').then( m => m.DonacionPageModule)
   },
+
 ];
 
 @NgModule({
