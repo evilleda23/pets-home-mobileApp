@@ -12,6 +12,7 @@ import { User } from 'src/app/interfaces/interfaces';
 import { Org } from '../../interfaces/interfaces';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DonacionPage } from '../donacion/donacion.page';
+import { CuentasPage } from '../cuentas/cuentas.page';
 
 @Component({
   selector: 'app-profile',
@@ -62,6 +63,18 @@ export class ProfilePage implements OnInit {
       this.bubbles = false;
       event.target.complete();
     }, 1500);
+  }
+  async openModalCuentas() {
+    const modal = await this.modalCtrl.create({
+      component: CuentasPage,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
+    }
   }
   async openModal() {
     const modal = await this.modalCtrl.create({

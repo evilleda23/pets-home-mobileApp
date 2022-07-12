@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'donacion',
     loadChildren: () => import('./donacion/donacion.module').then( m => m.DonacionPageModule)
   },
+  {
+    path: 'cuentas',
+    loadChildren: () => import('./cuentas/cuentas.module').then( m => m.CuentasPageModule)
+  },
 
 ];
 

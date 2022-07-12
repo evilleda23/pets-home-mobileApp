@@ -2,7 +2,8 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { LocalStorageService } from './local-storage.service';
-const urlAPI = 'http://localhost:3000';
+const urlAPI = 'https://api-azure-petshome.herokuapp.com';
+//const urlAPI = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +44,8 @@ export class CuentasService {
 
     try {
       const res = await this.getRequest(url);
+      console.log(res);
+
       return res.data;
     } catch (error) {
       console.error(error);
@@ -67,7 +70,17 @@ export class CuentasService {
 
     return rest;
   }
+  async getCuentas(IDOrg) {
+    const url = `${urlAPI}/api/orgs/cuentas/${IDOrg}`;
 
+    try {
+      const res = await this.getRequest(url);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
   async getRequest(url) {
     try {
       const config = {

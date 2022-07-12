@@ -46,9 +46,9 @@
                 <ion-icon name="heart-outline"></ion-icon>
                 <ion-label>Adopciones</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="donacion">
+            <ion-segment-button *ngIf="!user.isUser" (click)="openModalCuentas()" value="donacion">
                 <ion-icon name="cash-outline"></ion-icon>
-                <ion-label>Donaciones</ion-label>
+                <ion-label>Cuentas</ion-label>
             </ion-segment-button>
             <ion-segment-button value="config">
                 <ion-icon name="construct-outline"></ion-icon>
