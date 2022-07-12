@@ -15,6 +15,7 @@
       <ion-list>
         <ion-menu-toggle *ngFor="let c of componentes | async">
           <ion-item class="txt" [routerLink]="c.redirectTo" detail>
+
             <ion-icon slot="start" color="secondary" [name]="c.icon" class="m-r-5"></ion-icon>
             {{c.title}}
           </ion-item>

@@ -25,4 +25,7 @@ export class LocalStorageService {
   async getToken() {
     return this.storage.get('Token');
   }
+  async clear() {
+    await this.storage.clear();
+  }
 }
