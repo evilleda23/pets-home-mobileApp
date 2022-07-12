@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
+      <ion-button class="red" color="danger" size="small" shape="round" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title class="ion-text-capitalize">
       <ion-text color="light">
@@ -43,9 +43,12 @@
             </ion-select>
           </ion-item>
         </ion-list>
-        <ion-button class="ion-margin" [disabled]="formulario.invalid " type="submit" expand="block">
-          continue
-        </ion-button>
+        <div class="center">
+
+          <ion-button class="login100-form-btn " [disabled]="formulario.invalid " type="submit" expand="block">
+            continue
+          </ion-button>
+        </div>
       </form>
 
     </div>

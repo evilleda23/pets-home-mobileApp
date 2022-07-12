@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { CuentasService } from '../../services/cuentas.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-donacion',
@@ -17,7 +19,8 @@ export class DonacionPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private toastController: ToastController,
-    private cuentasService: CuentasService
+    private cuentasService: CuentasService,
+    private storage: LocalStorageService
   ) {}
   ngOnInit() {}
   cancel() {
@@ -38,10 +41,17 @@ export class DonacionPage implements OnInit {
   async addAccount() {
     const resp = await this.cuentasService.registerCuenta(this.cuenta);
     const idCuenta = resp.data.IDCuentaDonacion;
-    console.log(idCuenta);
+    const particpant = await this.storage.getCurrentParticipant();
+    console.log(particpant);
 
-    const response = await this.cuentasService.registerCuentaOrg(idCuenta, '1');
-    console.log(response);
+    const { idOrganizacion } = await this.cuentasService.getIDOrg(
+      particpant._id
+    );
+
+    const response = await this.cuentasService.registerCuentaOrg(
+      idCuenta,
+      idOrganizacion
+    );
   }
   async presentToast(
     toastMessage: string,

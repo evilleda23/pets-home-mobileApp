@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { LocalStorageService } from './local-storage.service';
 const urlAPI = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root',
 })
 export class CuentasService {
-  constructor() {}
+  constructor(private storage: LocalStorageService) {}
 
   async registerUser(IDObjectUser: string) {
     const url = `${urlAPI}/api/users`;
@@ -16,11 +17,10 @@ export class CuentasService {
 
     try {
       const res = await this.postRequest(url, body);
-      console.log(res);
 
       return res;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
@@ -33,21 +33,19 @@ export class CuentasService {
       const res = await this.postRequest(url, body);
       return res;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
 
-  async getIDOrg(IDOrganizacion: string) {
-    const url = `${urlAPI}/api/orgs`;
-    const params = {
-      IDOrganizacion,
-    };
+  async getIDOrg(IDObject: string) {
+    const url = `${urlAPI}/api/orgs/${IDObject}`;
+
     try {
-      const res = await this.getRequest(url, params);
-      return res;
+      const res = await this.getRequest(url);
+      return res.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
@@ -55,7 +53,6 @@ export class CuentasService {
   async registerCuenta(cuenta) {
     const url = `${urlAPI}/api/cuentas`;
     const rest = await axios.post(url, cuenta);
-    console.log(rest);
 
     return rest;
   }
@@ -67,20 +64,20 @@ export class CuentasService {
       iDOrganizacion,
     };
     const rest = await axios.post(url, cuenta);
-    console.log(rest);
+
     return rest;
   }
-  async getRequest(url, params = null) {
+
+  async getRequest(url) {
     try {
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
-        params,
       };
       return await axios.get(url, config);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
@@ -93,7 +90,7 @@ export class CuentasService {
       };
       return await axios.post(url, body, config);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }

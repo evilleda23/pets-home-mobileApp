@@ -13,10 +13,7 @@ export class AuthService {
   public userIsLogged = false;
 
   constructor(private storage: LocalStorageService) {}
-  async lol() {
-    const res = axios.get(urlAPI);
-    return res;
-  }
+
   async register(body: any, isUser: boolean) {
     //rembember: boolean) {
 
@@ -25,12 +22,12 @@ export class AuthService {
 
     try {
       const res = await this.postRequest(url, body);
-      console.log(res.data.token);
 
       await this.storage.saveToken(res.data.token);
       return res;
     } catch (error) {
       console.error(error);
+      return error;
     }
   }
   async loginUser(email: string, password: string) {
@@ -38,7 +35,9 @@ export class AuthService {
     const body = { email, password };
     try {
       const res = await this.postRequest(url, body);
-      await this.storage.saveToken(res.data.token);
+      if (res.data?.token) {
+        await this.storage.saveToken(res.data.token);
+      }
       return res;
     } catch (error) {
       console.error(error);
@@ -73,7 +72,6 @@ export class AuthService {
   async getRequest(url) {
     try {
       const token = await this.storage.getToken();
-      console.log(token);
 
       const config = {
         headers: {
@@ -83,7 +81,7 @@ export class AuthService {
       };
       return await axios.get(url, config);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
@@ -96,7 +94,7 @@ export class AuthService {
       };
       return await axios.post(url, body, config);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }
